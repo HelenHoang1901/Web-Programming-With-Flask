@@ -1,0 +1,12 @@
+{% extends "layout.html" %}  # this html file will extend the definition of layout.html
+
+{% block body %}
+    <ul> <!-- unordered list --> 
+        {% for student in students %}
+            <li>
+                {{ student }}
+            </li>
+        {% endfor %} <!-- one world, no space --> 
+    </ul>
+    
+{% endblock %}

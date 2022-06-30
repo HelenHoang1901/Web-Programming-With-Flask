@@ -1,0 +1,31 @@
+{% extends "layout.html" %}  # this html file will extend the definition of layout.html
+
+{% block body %}
+        <h1>Register to Frosh IM</h1>
+        <form action = "/register" method = "post">
+            <input autocomplete = "off" autofocus name = "name" placeholder="Name" type="text">
+            <!--<input name = "email" placeholder="Email" type="text"> -->
+            <select name = "dorm">
+                <option disabled selected value = "">Dorm</option>
+                <option value = "Apley Court">Apley Court</option>
+                <option value = "Canaday">Canaday</option>
+                <option value = "Mower">Mower</option>
+                <option value = "Grays">Grays</option>
+            </select>
+            <input type = "submit" value = "Register">
+        </form>
+        <!-- <script src = "form.js" ></script> -->
+        <script>
+            document.querySelector('form').onsubmit = function() {
+                if (!document.querySelector('input').value) {
+                    alert('You must provide your name!');
+                    return false;
+                }
+                else if (!document.querySelector('select').value) {
+                    alert('You must provide your dorm!');
+                    return false;
+                }
+                return true;
+            };
+        </script>
+{% endblock %}
