@@ -1,0 +1,40 @@
+{% extends "layout.html" %}  # this html file will extend the definition of layout.html
+
+{% block body %}
+    <form action = "/search" method = "get">
+        <!-- "autofocus will help to put the cursor right in the text box" -->
+        <!--VERSION 0-->
+        <input autocomplete="off" autofocus name = "q" placeholder = "Query" type = "text">
+        <input type = "submit" value = "Search">
+        <!--VERSION 1-->
+        <input autocomplete="off" autofocus placeholder = "Query" type = "text">
+        <ul></ul>
+        <script> src = "https://code.jquery.com/jquery-3.3.1.min.js" </script>
+        <script>
+            let input = document.querySelector('input');
+            input.onkeyup = function() {
+                $.get('/search?q=' + input.value, function(data) {
+                    document.querySelector('ul').innerHTML = data;
+                });
+            };
+        </script>
+        <!--VERSION 3-->
+        <input autocomplete="off" autofocus placeholder = "Query" type = "text">
+        <ul></ul>
+        <script> src = "large.js" </script> <!--tell the user download the alphabet file and search them locally-->
+        <script>
+            let input = document.querySelector('input');
+            input.onkeyup = function() {
+                let html = '';
+                if(input.value) {
+                    for (words of WORDS) {
+                        if (word.startsWith(input.value)) {
+                            html += '<li>' + word + '</li>';
+                        }
+                    }
+                }
+                document.querySelector('ul').innerHTML = html;
+            };
+        </script>
+    </form>
+{% endblock %}
